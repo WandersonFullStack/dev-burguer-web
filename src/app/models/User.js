@@ -1,4 +1,4 @@
-import Sequelize, { Model } from 'sequelize'
+import Sequelize, { Model } from 'sequelize';
 
 class User extends Model {
     static init(sequelize) {
@@ -9,7 +9,8 @@ class User extends Model {
             admin: Sequelize.BOOLEAN,
         },
     {
-        sequelize
+        sequelize,
+        tableName: 'users'
     },
 );
     };
