@@ -1,6 +1,8 @@
 import * as Yup from 'yup';
 import User from '../models/User.js';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import authConfig from '../../config/auth.js';
 
 class SessionController {
     async store(request, response) {
@@ -39,11 +41,16 @@ class SessionController {
             dataIncorrect();
         }
 
+        const token = jwt.sign({id: existinUser.id}, authConfig.secret, {
+            expiresIn: authConfig.expiresIn
+        });
+
         return response.status(200).json({ 
             id: existinUser.id,
             name: existinUser.name,
             email: existinUser.email,
             admin: existinUser.admin,
+            token,
          });
     }
 }
