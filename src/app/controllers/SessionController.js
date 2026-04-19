@@ -41,7 +41,10 @@ class SessionController {
             dataIncorrect();
         }
 
-        const token = jwt.sign({id: existinUser.id}, authConfig.secret, {
+        const token = jwt.sign({
+            id: existinUser.id, 
+            admin: existinUser.admin
+        }, authConfig.secret, {
             expiresIn: authConfig.expiresIn
         });
 
