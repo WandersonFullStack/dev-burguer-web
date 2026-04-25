@@ -18,7 +18,7 @@ const OrderSchema = new mongoose.Schema(
                 required: true
             },
             name: {
-                tyoe: String,
+                type: String,
                 required: true
             },
             price: {
